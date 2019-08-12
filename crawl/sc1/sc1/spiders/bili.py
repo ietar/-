@@ -12,7 +12,7 @@ class BiliSpider(scrapy.Spider):
         items = response.css('li.rank-item')
         for i in items:
             item = Sc1Item()
-            item['num'] = i.css('div.num').css('::text').extract()[0]
-            item['title'] = i.css('div.content').css('div.info').css('a.title').css('::text').extract()[0].strip()
-            item['author'] = i.css('div.content').css('div.info').css('div.detail').css('a').css('::text').extract()[0]
+            item['num'] = i.css('div.num ::text').extract()[0]
+            item['title'] = i.css('div.content div.info a.title ::text').extract()[0].strip()
+            item['author'] = i.css('div.content div.info div.detail a ::text').extract()[0]
             yield item
